@@ -27,7 +27,11 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".DetailActivity">
-
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FriendsListActivity" />
+        </activity>
+        <activity android:name=".NewFriendActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".FriendsListActivity" />

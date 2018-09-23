@@ -1,9 +1,11 @@
 package jag3498.github.com.socialconnect;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,12 +36,16 @@ public class FriendsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_list);
 
+      //  Toolbar myToolbar = (Toolbar) findViewById(R.id.friendListToolbar);
+       // setSupportActionBar(myToolbar);
+
+
 
 
         ArrayList<Friend> friendlist = new ArrayList<Friend>();
        // ArrayList<String> list = new ArrayList<String>();
 
-        /*
+/*
         friendlist.add(new Friend("Jack", "Giebel", "03/04/1998", "1/1/2008", "He is a cool dude"));
         friendlist.add(new Friend("Kelly", "Wallert", "09/03/1999", "10/31/2017", "Kelly is a nice friend"));
         friendlist.add(new Friend("Paul", "Suchko", "06/12/1998", "9/1/2016", "Paul is a guy with a job at PPG"));
@@ -50,11 +56,11 @@ public class FriendsListActivity extends AppCompatActivity {
         friendlist.add(new Friend("Beatrice", "Burgess", "01/01/1995", "1/1/2015", "Runs the website neteret.net"));
 
         String friendsave;
-        friendsave =  gson.toJson(friendlist); */
-
+        friendsave =  gson.toJson(friendlist);
+*/
         Context context = getApplicationContext();
 
-        //writeToFile(friendsave, context);
+       // writeToFile(friendsave, context);
 
         final ArrayList<Friend> friendlist1 = gson.fromJson(readFromFile(context), new TypeToken<ArrayList<Friend>>(){}.getType());
 
@@ -73,12 +79,28 @@ public class FriendsListActivity extends AppCompatActivity {
 
                 Friend currentFriend = friendlist1.get(position);
                 intent.putExtra("friend", currentFriend);
+                intent.putExtra("pos", position);
 
+                int requestCode = 0;
 
                 startActivity(intent);
             }
         });
 
+    }
+
+    public void addFriend(View view){
+        Intent intent = new Intent(FriendsListActivity.this, NewFriendActivity.class);
+        startActivity(intent);
+
+
+    }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        this.finish();
+        startActivity(getIntent());
     }
 
     @Override

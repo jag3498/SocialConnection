@@ -37,6 +37,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="date"
+        android:text="Birthday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="date"
+        android:text="Start Date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthdayInput" />
@@ -60,7 +62,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="Notes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startDateInput" />
@@ -69,10 +71,26 @@
         android:id="@+id/editFriendSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Edit"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:onClick="updateFriend"
+        android:text="Save Changes"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notesInput" />
+
+    <Button
+        android:id="@+id/removeFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:onClick="deleteFriend"
+        android:text="Delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editFriendSubmit"
         app:layout_constraintTop_toBottomOf="@+id/notesInput" />
 
 </android.support.constraint.ConstraintLayout>
