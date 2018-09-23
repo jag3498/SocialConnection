@@ -1,7 +1,9 @@
 package jag3498.github.com.socialconnect;
 
 
-public class Friend {
+import java.io.Serializable;
+
+public class Friend implements Serializable {
 
     private String firstname;
     private String lastname;

@@ -69,8 +69,12 @@ public class FriendsListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(FriendsListActivity.this, DetailActivity.class);
-                String message = friendlist1.get(position).toString();
-                intent.putExtra("animal", message);
+
+
+                Friend currentFriend = friendlist1.get(position);
+                intent.putExtra("friend", currentFriend);
+
+
                 startActivity(intent);
             }
         });
