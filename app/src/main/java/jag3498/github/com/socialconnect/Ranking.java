@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Ranking implements Serializable {
 
-    private int numPeopleAvg;
-    private int comfortAvg;
-    private int knowAvg;
-    private int IntervalAvg;
+    private double numPeopleAvg;
+    private double comfortAvg;
+    private double knowAvg;
+    private double IntervalAvg;
     /*
     These averages will be computed based on current interactions in the list.
      */
@@ -20,7 +20,7 @@ public class Ranking implements Serializable {
     */
 
 
-    public Ranking(int numPeopleAvg, int comfortAvg, int knowAvg, int IntervalAvg, int tip1, int tip2, int tip3, int tip4) {
+    public Ranking(double numPeopleAvg, double comfortAvg, double knowAvg, double IntervalAvg, int tip1, int tip2, int tip3, int tip4) {
         this.numPeopleAvg = numPeopleAvg;
         this.comfortAvg = comfortAvg;
         this.knowAvg = knowAvg;
@@ -32,31 +32,31 @@ public class Ranking implements Serializable {
 
     }
 
-    public int getNumPeopleAvg() {
+    public double getNumPeopleAvg() {
         return numPeopleAvg;
     }
 
-    public void setNumPeopleAvg(int numPeopleAvg) {
+    public void setNumPeopleAvg(double numPeopleAvg) {
         this.numPeopleAvg = numPeopleAvg;
     }
 
-    public int getComfortAvg() {
+    public double getComfortAvg() {
         return comfortAvg;
     }
 
-    public void setComfortAvg(int comfortAvg) {
+    public void setComfortAvg(double comfortAvg) {
         this.comfortAvg = comfortAvg;
     }
 
-    public int getKnowAvg() {
+    public double getKnowAvg() {
         return knowAvg;
     }
 
-    public void setKnowAvg(int knowAvg) {
+    public void setKnowAvg(double knowAvg) {
         this.knowAvg = knowAvg;
     }
 
-    public int getIntervalAvg() {
+    public double getIntervalAvg() {
         return IntervalAvg;
     }
 

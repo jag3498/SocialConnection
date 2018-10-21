@@ -9,7 +9,8 @@
     <ListView
         android:id="@+id/tip_list"
         android:layout_width="395dp"
-        android:layout_height="643dp"
+        android:layout_height="647dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

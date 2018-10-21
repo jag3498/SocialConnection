@@ -12,17 +12,15 @@ import java.util.ArrayList;
 public class TipListAdapter extends ArrayAdapter{
     //to reference the Activity
     private final Activity context;
-    private final int categoryInt;
     private final ArrayList<Tip> tipArray;
 
 
-    public TipListAdapter(Activity context, ArrayList<Tip> tipArrayParam, int categoryInt){
+    public TipListAdapter(Activity context, ArrayList<Tip> tipArrayParam){
 
-        super(context, R.layout.listview_row , tipArrayParam);
+        super(context, R.layout.tipview_row , tipArrayParam);
 
         this.context=context;
         this.tipArray = tipArrayParam;
-        this.categoryInt = categoryInt;
 
     }
 
@@ -30,9 +28,9 @@ public class TipListAdapter extends ArrayAdapter{
     public View getView(int position, View view, ViewGroup parent) {
 
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.listview_row, null,true);
+        View rowView=inflater.inflate(R.layout.tipview_row, null,true);
 
-        TextView tipText = (TextView) rowView.findViewById(R.id.tipText);
+        TextView tipText = rowView.findViewById(R.id.tipText);
         tipText.setText(tipArray.get(position).getText());
 
 
