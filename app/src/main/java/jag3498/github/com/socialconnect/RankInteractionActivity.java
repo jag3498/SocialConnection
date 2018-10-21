@@ -64,10 +64,16 @@ public class RankInteractionActivity extends AppCompatActivity {
         //  ArrayList<Interaction> interactions = new ArrayList<>();
       //  Friend test = new Friend("Jack", "Giebel", "03/04/1998", "1/1/2008", "He is a cool dude");
        // Interaction interaction = new Interaction(test, 1, 1, 5, 5);
+        ArrayList<Interaction> interactions = new ArrayList<>();
+
+        File file = context.getFileStreamPath("interactions.txt");
+        if(file.exists()){
+            interactions = gson.fromJson(readFromFile(context, "interactions.txt"), new TypeToken<ArrayList<Interaction>>(){}.getType());
+        }
 
 
 
-       final ArrayList<Interaction> interactions = gson.fromJson(readFromFile(context, "interactions.txt"), new TypeToken<ArrayList<Interaction>>(){}.getType());
+
        final ArrayList<Friend> friends = gson.fromJson(readFromFile(context, "friends.txt"), new TypeToken<ArrayList<Friend>>(){}.getType());
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerFriend);
@@ -203,20 +209,22 @@ public class RankInteractionActivity extends AppCompatActivity {
 
         //Add the matching tips to these arraylists
         for(Tip tip:tips){
-            if(tip.getType() == type1){
+            if(tip.getSkill() == type1){
                 tips1.add(new TipSelection(tips.indexOf(tip),tip));
             }
-            if(tip.getType() == type2){
+            if(tip.getSkill() == type2){
                 tips2.add(new TipSelection(tips.indexOf(tip),tip));
             }
-            if(tip.getType() == type3){
+            if(tip.getSkill() == type3){
                 tips3.add(new TipSelection(tips.indexOf(tip),tip));
             }
-            if(tip.getType() == type4){
+            if(tip.getSkill() == type4){
                 tips4.add(new TipSelection(tips.indexOf(tip),tip));
             }
 
         }
+
+        //Log.e("TIP!!!!!!", gson.toJson(tips2));
 
         //Randomly select matching tips to add to the ranking
         Random rand = new Random();
@@ -232,7 +240,7 @@ public class RankInteractionActivity extends AppCompatActivity {
         Ranking rank = new Ranking(numPeopleAvg,comfortAvg,knowAvg,IntervalAvg, tip1, tip2, tip3, tip4);
 
         //save the rankings to file
-        File file = context.getFileStreamPath("rankings.txt");
+        file = context.getFileStreamPath("rankings.txt");
         if(file.exists()){
             ArrayList<Ranking> rankings = gson.fromJson(readFromFile(context, "rankings.txt"), new TypeToken<ArrayList<Ranking>>(){}.getType());
 
@@ -248,7 +256,7 @@ public class RankInteractionActivity extends AppCompatActivity {
             writeToFile(rankSave,context, "rankings.txt" );
 
         }
-        
+
         //Intent intent = new Intent(RankInteractionActivity.this, NewFriendActivity.class);
         //startActivity(intent);
         //Log.d("myTag",intSave);

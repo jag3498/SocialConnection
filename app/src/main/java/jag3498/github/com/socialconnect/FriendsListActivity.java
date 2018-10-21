@@ -62,30 +62,38 @@ public class FriendsListActivity extends AppCompatActivity {
 
        // writeToFile(friendsave, context);
 
-        final ArrayList<Friend> friendlist1 = gson.fromJson(readFromFile(context), new TypeToken<ArrayList<Friend>>(){}.getType());
+        File file = context.getFileStreamPath("friends.txt");
+        if(file.exists()){
+            final ArrayList<Friend> friendlist1 = gson.fromJson(readFromFile(context), new TypeToken<ArrayList<Friend>>(){}.getType());
+
+            CustomListAdapter whatever = new CustomListAdapter(this, friendlist1);
+            listView = (ListView) findViewById(R.id.friend_list);
+            listView.setAdapter(whatever);
 
 
-        CustomListAdapter whatever = new CustomListAdapter(this, friendlist1);
-        listView = (ListView) findViewById(R.id.friend_list);
-        listView.setAdapter(whatever);
+            listView.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Intent intent = new Intent(FriendsListActivity.this, DetailActivity.class);
 
 
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Friend currentFriend = friendlist1.get(position);
+                    intent.putExtra("friend", currentFriend);
+                    intent.putExtra("pos", position);
 
-                Intent intent = new Intent(FriendsListActivity.this, DetailActivity.class);
+                    int requestCode = 0;
+
+                    startActivity(intent);
+                }
+            });
+        }
+        else{
+
+        }
 
 
-                Friend currentFriend = friendlist1.get(position);
-                intent.putExtra("friend", currentFriend);
-                intent.putExtra("pos", position);
 
-                int requestCode = 0;
-
-                startActivity(intent);
-            }
-        });
 
     }
 
