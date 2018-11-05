@@ -1,6 +1,11 @@
 package jag3498.github.com.socialconnect;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -224,8 +230,6 @@ public class RankInteractionActivity extends AppCompatActivity {
 
         }
 
-        //Log.e("TIP!!!!!!", gson.toJson(tips2));
-
         //Randomly select matching tips to add to the ranking
         Random rand = new Random();
 
@@ -260,6 +264,32 @@ public class RankInteractionActivity extends AppCompatActivity {
         //Intent intent = new Intent(RankInteractionActivity.this, NewFriendActivity.class);
         //startActivity(intent);
         //Log.d("myTag",intSave);
+
+        String CHANNEL_ID = "1";
+
+        String rankingtext;
+
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        rankingtext = "Your avg comfort level: " + df.format(comfortAvg);
+
+
+
+
+        // double numPeopleAvg = 0;
+      //  double comfortAvg= 0;
+       // double knowAvg= 0;
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("Ranking Update")
+                .setContentText(rankingtext)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+// notificationId is a unique int for each notification that you must define
+        notificationManager.notify(1111, mBuilder.build());
 
         finish();
 
@@ -315,4 +345,6 @@ public class RankInteractionActivity extends AppCompatActivity {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
+
+
 }
