@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -100,7 +101,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+
+        //Listens for longpress of textview to refresh the tips
+        title.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+
+                return false;
+            }
+        });
+
+
+
     }
+
+
+
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
